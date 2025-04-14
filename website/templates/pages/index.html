@@ -1,0 +1,177 @@
+{% extends 'pages/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="contain">
+<div class="tablebottom">
+
+<table id="ProductTable" class="table table-hover">
+    <thead class="table-secondary">
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Size</th>
+            <th scope="col">In Stock</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Total</th>
+            {% comment %} <th scope="col">Amount</th> {% endcomment %}
+        </tr>
+    </thead>
+    <tbody class="table-primary">
+        {% if records %}
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.ProductType }}</td>
+                    <td>{{ record.ProductSize }}</td>
+                    <td>{{ record.ProductStock }}</td>
+                    <td class="price">{{ record.ProductPrice }}</td>
+                    <td> <input type="number" class="amount-input"></input> </td> 
+                    <td> <h1 class="total smalltext"> </h1> </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td colspan="5">No records found</td></tr>
+        {% endif %}
+    </tbody>
+</table>
+
+    
+
+
+</div>
+
+<div class="order-form">
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div id="dropdownContainer">
+            <!-- Initially one dropdown -->
+             <h1> Stock Updates </h1>
+             <div class="details">
+            </div>
+             <hr>
+            <label for="Products">Add a product:</label>
+            <select name="Products_1" id="products_1">
+                <option value="1">Post 9ft</option>
+                <option value="2">Post 8ft</option>
+                <option value="3">Post 7ft</option>
+                <option value="4">Post 6ft</option>
+                <option value="42">Post 5ft</option>
+                <option value="5">End Post 9ft</option>
+                <option value="6">End Post 8ft</option>
+                <option value="7">End Post 7ft</option>
+                <option value="8">End Post 6ft</option>
+                <option value="9">Corner Post 9ft</option>
+                <option value="10">Corner Post 8ft</option>
+                <option value="11">Corner Post 7ft</option>
+                <option value="12">Corner Post 6ft</option>
+                <option value="13">3 Way 9ft</option>
+                <option value="14">3 Way 8ft</option>
+                <option value="15">3 Way 7ft</option>
+                <option value="16">3 Way 6ft</option>
+                <option value="17">Panel {SS} 6ft </option>
+                <option value="18">Panel {SS} 5ft </option>
+                <option value="19">Panel {SS} 4ft </option>
+                <option value="20">Panel {SS} 3ft </option>
+                <option value="21">Panel {DS ARCH} 6ft </option>
+                <option value="22">Panel {DS ARCH} 5ft </option>
+                <option value="23">Panel {DS ARCH} 4ft </option>
+                <option value="24">Panel {DS ARCH} 3ft </option>
+                <option value="25">Panel {SS FE} 6ft </option>
+                <option value="26">Panel {SS FE} 5ft </option>
+                <option value="27">Panel {SS FE} 4ft </option>
+                <option value="28">Panel {SS FE} 3ft </option>
+                <option value="29">Panel {SS ARCH} 6ft </option>
+                <option value="30">Panel {SS ARCH} 5ft </option>
+                <option value="31">Panel {SS ARCH} 4ft </option>
+                <option value="32">Panel {SS ARCH} 3ft </option>
+                <option value="33">Gravel Board Rock 1ft</option>
+                <option value="35">Gravel Board Rock 6 inch</option>
+                <option value="34">Gravel Board Flat 1ft</option>
+                <option value="36">Gravel Board Flat 6 inch</option>
+                <option value="37">Wooden Post 8ft</option>
+                <option value="38">Grain Sand 1 ton bag</option>
+                <option value="39">Building Sand 1 ton bag</option>
+                <option value="40">Crusher 1 ton bag</option>
+                <option value="41">Post Mix 20kg</option>
+            </select>
+            <br>
+            <p> Amount (+ for buy - for sell) </p>
+            <input id="input_1" name="input_1"></input>
+            <hr>
+        </div>
+
+        <!-- Button to add more dropdowns -->
+        <button type="button" onclick="addDropdown()">Add Another Product</button>
+        
+
+        <button type="submit"> submit </button>
+        
+
+    </form>
+</div>
+<div class="receiptform">
+    <button onclick="receipt()">Generate Receipt</button>
+    <label for="cash/card"> Cash or Card: </label>
+    <select id="cash/card">
+        <option value="Cash"> Cash </option>
+        <option value="Card"> Card </option>
+    </select>
+    <br> <br>
+
+    <div id="receiptContainer">
+        <div class="topheading">
+            <h1> MB Fencing Supplies LTD</h1>
+            <hr>
+            <h2>INVOICE</h2>
+            <p id="cash/card_output"> Paid with: </p>
+        </div>
+        <div class="information">
+            <div class="row">
+            <div class="col">
+                    <p> Sandy Lane S80 1TN Unit 1 </p>
+                    <p> 07490926063 </p>
+            </div>
+            <div class="col">
+                <p id="today"> Date: </p> 
+            </div>
+        </div>
+        </div>
+        <div class="labelsmain">
+            <div class="labelsqty">
+                <h1> QTY </h1>
+            </div>
+            <div class="labelsdesc">
+                <h1> Description </h1>
+            </div>
+            <div class="labelsprice">
+                <h1> Price </h1>
+            </div>
+        </div>
+        <div class="wholepage">
+            
+            <div id="Qty">
+                <!-- Amounts will be populated here -->
+            </div>
+            <div id="Desc">
+                <!-- Product details will be populated here -->
+            </div>
+            <div id="pricelist">
+                <!-- Price details will be populated here -->
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bottomnothing">
+            </div>
+            <div id="totalprice">
+                <!-- Total price will be populated here -->
+            </div>
+        </div>
+        </div>
+        
+    <button onclick="printReceipt()">Print Receipt</button>
+</div>
+</div>
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}

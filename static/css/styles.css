@@ -1,0 +1,115 @@
+.tablebottom{
+    border:1px solid black;
+    width:750px;
+}
+
+.smalltext{
+    font-size: 80%;
+}
+
+.order-form{
+    width: 300px;
+    height:300px;
+}
+
+.total-total{
+    height: 200px;
+    width:200px;
+}
+
+.order-form{
+    height:100%;
+    width:300px;
+    border:1px solid black;
+    flex: 1;
+}
+
+.contain{
+    display:flex;
+    gap:100px;
+}
+
+/* print form css */
+
+#receiptContainer{
+    border:1px solid black;
+    height:45%;
+    width:100%;
+    padding: 20px;
+    background-color: rgb(240, 240, 134);
+}
+
+.box{
+    border:1px solid black;
+}
+
+.receiptform{
+    flex: 2;
+    
+}
+
+.topheading{
+    text-align: center;
+}
+
+.wholepage{
+    width:100%;
+    height:50%;
+    display:flex;
+}
+
+#Qty{
+    width:20%;
+    height:100%;
+    border: 1px dotted black;
+}
+
+#Desc{
+    width:60%;
+    height:100%; 
+    border: 1px dotted black;
+}
+
+#pricelist{
+    width:20%;
+    height:100%;
+    border: 1px dotted black;
+}
+
+.bottom{
+    width:100%;
+    height:100px;  
+    display:flex; 
+}
+
+.bottomnothing{
+    width:80%;
+    height:100%;
+}
+
+#totalprice{
+    height:100%;
+    width:20%;
+    border: 1px dotted black;
+}
+
+.labelsmain{
+    width:100%;
+    height:50px;
+    display:flex;
+}
+
+.labelsqty{
+    width: 20%;
+    text-align: center;
+}
+
+.labelsdesc{
+    width:60%;
+    text-align: center;
+}
+
+.labelsprice{
+    width:20%;
+    text-align: center;
+}
